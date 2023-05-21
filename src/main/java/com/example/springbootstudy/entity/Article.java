@@ -1,9 +1,14 @@
 package com.example.springbootstudy.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity //엔티티로 저장
+@Getter //get 메서드 대신에 사용하는 어노테이션
+@NoArgsConstructor(access = AccessLevel.PROTECTED) //생성자를 생성하는데 별도의 코드 사용없이 가능하게 하는 어노테이션
 public class Article {
 
     @Id //id 필드를 기본키로 지정
@@ -21,21 +26,5 @@ public class Article {
     public Article(String title, String content) {
         this.title = title;
         this.content = content;
-    }
-
-    protected Article() { //기본 생성자
-
-    }
-
-    public Long getId() {
-        return  id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
     }
 }
