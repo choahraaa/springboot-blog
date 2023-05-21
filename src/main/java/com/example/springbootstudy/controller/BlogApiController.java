@@ -2,6 +2,7 @@ package com.example.springbootstudy.controller;
 
 import com.example.springbootstudy.dto.AddArticleRequest;
 import com.example.springbootstudy.dto.ArticleResponse;
+import com.example.springbootstudy.dto.UpdateArticleRequest;
 import com.example.springbootstudy.entity.Article;
 import com.example.springbootstudy.service.BlogService;
 import lombok.Getter;
@@ -52,5 +53,14 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
                 .build();
+    }
+
+    @PutMapping("/api/articles/{id}")
+    public ResponseEntity<Article> updateArticle(@PathVariable long id,
+                                                 @RequestBody UpdateArticleRequest request) {
+        Article updatedArticle = blogService.update(id, request);
+
+        return ResponseEntity.ok()
+                .body(updatedArticle);
     }
 }
